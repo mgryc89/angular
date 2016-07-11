@@ -1,0 +1,91 @@
+<!doctype html>
+<html ng-app="Aplikacja">
+  <head>
+  	<meta charset="UTF-8">
+	   <title>Angular</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script>
+      var nameApp = angular.module('Aplikacja', []);
+
+      nameApp.config(function($routeProvider){
+        $routeProvider
+          .when('/view1',
+            {
+                controller: 'hello',
+                templateUrl: 'View1.html'
+            })
+          .when('/view2',
+            {
+              controller:'hello',
+              templateUrl:'View2.html'
+            })
+          .otherwise({ redirectTo: '/view1'});
+      });
+
+      nameApp.controller('hello', function($scope) {
+        $scope.hello = 'hello word!';
+        $scope.mati = 'czesc tu mati';
+        $scope.tablica = ['pierwsza','druga','trzecia'];
+
+        $scope.addWord = function(){
+          $scope.tablica.push($scope.newWord);
+          $scope.newWord='';
+        }
+        $scope.deleteWord = function(word){
+          var i = $scope.tablica.indexOf(word);
+          $scope.tablica.splice(i,1);
+        }
+      });
+
+      nameApp.controller('Zpliku', function($scope, $http){
+        $http.get('json/hello.json').success(function(data){
+          $scope.tablicaJson = data;
+        });
+      });
+
+    </script>
+  </head>
+  <body>
+
+
+    <div ng-view></div>
+
+    <!-- <input type="text" ng-model="name">
+    {{name}}
+
+    <hr>
+    <br><br>
+
+    <div ng-controller='hello'>
+      {{hello}}
+      <br>
+
+      <input type="text" ng-model="mati">
+      {{mati}}
+      <br>
+
+      <ul>
+        <li ng-repeat="ilosc in tablica">{{ilosc}} <a href="" ng-click="deleteWord(ilosc)">X</a></li>
+      </ul>
+
+      <form ng-submit='addWord()'>
+        <input type="text" ng-model='newWord'>
+        <input type="submit" value='dodaj'>
+      </form>
+    </div>
+
+    <div ng-controller="Zpliku">
+      <input type="text" ng-model="szukaj">
+      <ul>
+        <li ng-repeat="el in tablicaJson | filter:szukaj | orderBy:'miasto'">
+          {{el.miasto}}   <br>
+          <img ng-src="{{el.img}}" alt="">
+        </li>
+      </ul>
+    </div> -->
+
+
+
+  </body>
+</html>
+

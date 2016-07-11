@@ -1,0 +1,58 @@
+<html ng-app="moj">
+<head>
+	<meta charset="UTF-8">
+	<title>angularjs</title>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-animate.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-cookies.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-resource.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-sanitize.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-touch.min.js"></script>
+</head>
+<body>
+	<h4>angular</h4>
+	<div ng-controller="con">
+		<input type="text" ng-model="wpisz">
+		{{ wpisz }}
+
+		<br /><br />
+		<table>
+			<tr ng-repeat="klient in klienci | filter:wpisz">
+				<td>imie: <b>{{ klient.imie }}</b>, wiek: {{ klient.wiek }}</td>
+			</tr>
+		</table>
+
+		{{ pp }}
+		{{ perwszy }}
+		
+	</div>
+
+	<script>
+		var app = angular.module('moj', []);
+
+		app.controller('con', function ($scope, fabryka){
+			$scope.klienci = [
+				{'imie':'mati','wiek':27},
+				{'imie':'gabi','wiek':24},
+				{'imie':'luki','wiek':28}
+			];
+			$scope.pp = fabryka.drugi();
+			$scope.perwszy = fabryka.pierwsza;
+		});
+
+		app.factory('fabryka', function () {
+			var obj ={};
+
+			obj.pierwsza =  'pierwszy obiekt';
+			obj.drugi = function () {
+				return 'drugi drugi';
+			}
+
+			return obj;
+		});
+
+	</script>
+</body>
+</html>

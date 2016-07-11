@@ -1,0 +1,23 @@
+[
+{
+	"id":"1",
+	"miasto":"Bialystok",
+	"img":"http://www.doggi-game.pl/img/avatars/78348.jpg"
+},
+{
+	"id":"2",
+	"miasto":"Warszawa"
+},
+{
+	"id":"3",
+	"miasto":"Kraków",
+	"img":""
+},
+{
+	"id":"4",
+	"miasto":"BialaPodlaska",
+	"img":""
+}
+
+
+]

@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="angular-route.min.js"></script>
+</head>
+<body>
+<div ng-controller="MyCtrl">
+	{{ fab }}
+	<br>
+	{{ fab2 }}
+	<br>
+	{{ fab22 }}
+	<br>
+	{{ serwis }}
+	<br>
+	{{ cos }}
+	<br>
+	{{ pro }}
+</div>
+
+
+<script>
+var app = angular.module("app", []);
+
+	app.value('stringValue', 'jakiś String');
+	app.factory('fabryka2', function (stringValue) {			
+		return "wartość z fabryki i value: "+ stringValue;
+	});
+
+	app.factory('fabryka', function () {
+		var obj ={};
+
+		obj.pierwsza =  'pierwszy obiekt';
+		obj.drugi = function () {
+			return 'drugi drugi';
+		}
+
+		return obj;
+	});
+
+	app.service('serwis', function () {
+		this.wartosc = function() {
+			return 'wartosc z serwisu';
+		}	
+		this.warString = 'wartosc serwisu bez funcji';
+	});
+
+
+
+	app.provider('provider', [function () {
+		this.$get = [function() {
+			return {
+				pokazDate: function () {
+					var date = new Date();
+					return date.getHours();
+				}
+			};
+		}];
+	}])
+
+
+	app.controller('MyCtrl',function ($scope, fabryka, fabryka2, serwis, provider) {
+		$scope.fab = fabryka.pierwsza;
+		$scope.fab2 = fabryka.drugi();
+		$scope.fab22 = fabryka2;
+		$scope.serwis = serwis.wartosc();
+		$scope.cos = serwis.warString;
+		$scope.pro = provider.pokazDate();
+	});
+	
+
+</script>
+	
+</body>
+</html>

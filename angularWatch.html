@@ -1,0 +1,32 @@
+<!doctype html>
+<html ng-app="Aplikacja">
+  <head>
+  	<meta charset="UTF-8">
+	   <title>Angular</title>
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+     <script src="angular-route.min.js"></script>
+
+  </head>
+  <body>
+
+<div ng-controller="watch">
+  <input type="text" ng-model="wpisz">
+    {{ wypisz }}
+</div>
+
+
+<script>
+  var app = angular.module('Aplikacja', []);
+  app.controller('watch',  function ($scope) {
+    $scope.wpisz = 6;
+    // $scope.wypisz = $scope.wpisz *2; 
+    $scope.$watch('wpisz', function(){
+          $scope.wypisz = $scope.wpisz *2; 
+    });
+  });
+</script>
+
+
+  </body>
+</html>
+

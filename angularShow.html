@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="angular-route.min.js"></script>
+</head>
+<body>
+
+<input type="checkbox" ng-model="zaznacz">Ukryj tekst <br>
+<div ng-hide="zaznacz">
+	tekst po zaznaczeniu!
+</div>
+<input type="text" ng-model="pokaz"> wpisz abc
+<div ng-show="pokaz =='abc'">
+	wpisano poprawne haslo abc
+</div>
+
+<br><br>
+
+<div ng-controller="conShow">
+	<button ng-click="zmiana()">zmiana</button>
+	<div ng-show="show =='msg1'">tekst 11111</div>
+	<div ng-show="show =='msg2'">tekst 22222</div>
+</div>
+
+
+<script>
+var app = angular.module('app', []);
+app.controller('conShow', function ($scope) {
+	$scope.show = 'msg1';
+	$scope.zmiana = function () {
+		$scope.show = $scope.show == 'msg1' ? 'msg2' : 'msg1';
+	}
+});
+</script>
+
+
+</body>
+</html>

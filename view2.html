@@ -1,0 +1,32 @@
+
+	<a href="#/view1">wodok 1</a>
+	<h1>View 2</h1>
+    <div ng-controller='hello'>
+      {{hello}}
+      <br>
+
+      <input type="text" ng-model="mati">
+      {{mati}}
+      <br>
+
+      <ul>
+        <li ng-repeat="ilosc in tablica">{{ilosc}} <a href="" ng-click="deleteWord(ilosc)">X</a></li>
+      </ul>
+
+      <form ng-submit='addWord()'>
+        <input type="text" ng-model='newWord'>
+        <input type="submit" value='dodaj'>
+      </form>
+    </div>
+
+    <div ng-controller="Zpliku">
+      <input type="text" ng-model="szukaj">
+      <ul>
+        <li ng-repeat="el in tablicaJson | filter:szukaj | orderBy:'miasto'">
+          {{el.miasto}}   <br>
+          <img ng-src="{{el.img}}" alt="">
+        </li>
+      </ul>
+    </div>
+
+	
